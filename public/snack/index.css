@@ -1,0 +1,42 @@
+#container {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    max-width: 200px;
+}
+
+#navbar{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+
+#navbar h3 {
+    font-family: fantasy;  
+    text-align: center;
+    color: black;
+    text-decoration-line: underline;
+    background-color: lightcyan;
+    padding: 4px;
+}
+
+h1 {
+    font-family: fantasy;  
+    text-align: center;
+    color: deeppink;
+    background-color: lightcyan;
+    padding: 12px;
+}
+
+p {
+    font-family: cursive;
+}
+
+#search-bar{
+    float: right;
+  padding: 6px;
+  border: none;
+  margin-top: 8px;
+  margin-right: 16px;
+  font-size: 17px;
+}

@@ -1,0 +1,43 @@
+#container {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    max-width: 200px;
+
+}
+
+.input-container{
+    margin: 12px;
+    font-family: fantasy;
+}
+
+h1 {
+    font-family: fantasy;  
+    text-align: center;
+    color: deeppink;
+    background-color: lightcyan;
+    padding: 12px;
+}
+
+#create-button {
+    font-style: bold;
+    font-size: medium;
+    border-radius: 12px;
+    border: 2px dashed;
+
+}
+
+#navbar{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+
+#navbar h3 {
+    font-family: fantasy;  
+    text-align: center;
+    color: black;
+    text-decoration-line: underline;
+    background-color: lightcyan;
+    padding: 4px;
+}
