@@ -22,17 +22,27 @@ const getSingleSnack = async () => {
     
     let parentContainer = document.getElementById("container");
     let itemContainer = document.createElement("div");
+
     itemContainer.innerHTML = `
     <h1>Our <br/>${finalData.snack}</h1>
     <img src=${finalData.image} width="200" length="200"/>
-    <p>Try one today!</p>
-    <button id="buy-button">BUY!</button>
-    <button id="delete-button">Remove snack</button>
     `
 
     parentContainer.appendChild(itemContainer);
 
-// use this finalData to make some tags, etc.
+    let inventoryContainer = document.getElementById("inventory");
+    if (finalData.quantity > 0) {
+        inventoryContainer.innerHTML = `
+        <h4>Try one today! ${finalData.quantity} available!</h4>
+        `
+    } else {
+        inventoryContainer.innerHTML = `
+        <h4>OUT OF STOCK!</h4>
+        `
+        document.getElementById("buy-button").style.display = "none";
+        document.getElementById("delete-button").style.display = "none";
+    }
+
 };
 
 getSingleSnack();
@@ -57,14 +67,22 @@ editpageClick.addEventListener('click', () => {
     window.location.href = "../edit"
 });
 
-//create action when buying
-buyButton.addEventListener('click', () => {
-    
+//create action when buying where inventory of snack decrements
+buyButton.addEventListener('click', async () => {
+    console.log("purchasing");
+    let response = await fetch(`http://localhost:5000/buy_snack/${id}`, {
+        method: "PUT",
+    });
+    console.log(response);
 });
 
 //create action when deleting
-deleteButton.addEventListener('click', () => {
-
+deleteButton.addEventListener('click', async () => {
+    console.log("deleting");
+    let response = await fetch(`http://localhost:5000/delete_snack/${id}`, {
+        method: "DELETE",
+    });
+    console.log(response);
 
 
     //return to homepage once submitted successfully,
@@ -77,7 +95,7 @@ deleteButton.addEventListener('click', () => {
         //else remain on create page
         } else {
             let tID = setTimeout(function () {
-                window.location.href = "./create";
+                window.location.href = "./get_specific_snack/:_id";
                 window.clearTimeout(tID);		// clear time out.
             }, 5000);
         };

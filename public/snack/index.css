@@ -40,3 +40,17 @@ p {
   margin-right: 16px;
   font-size: 17px;
 }
+
+button {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    max-width: 200px;
+}
+
+#inventory {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    max-width: 200px;
+}

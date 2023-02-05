@@ -1,15 +1,8 @@
 console.log("js file connected");
 
 //Navbar; create buttons for navigation to respective pages
-let findNavClick = document.getElementById('find-click');
 let createNavClick = document.getElementById('create-click');
 let deleteNavClick = document.getElementById('delete-click');
-
-//create action when clicking to find a snack
-findNavClick.addEventListener('click', () => {
-    // when clicked, navigate to specific food
-    window.location.href = "./snack"
-});
 
 //create action when clicking to submit a new snack that takes user to create.html
 createNavClick.addEventListener('click', async () => {
@@ -39,11 +32,19 @@ const getAndDisplayData = async () => {
         </a>
         `
 
+        //go to specific snack page once image is clicked
         itemContainer.addEventListener("click", () => {
             console.log("click", item._id);
             window.location.href=`./snack/?id=${item._id}`
         })
         parentContainer.appendChild(itemContainer);
+
+        //hide snacks from homepage if none available
+        if (item.quantity < 1) {
+            itemContainer.style.display = "none";
+        } else {
+            console.log("in stock!")
+        }
     });
 }
 

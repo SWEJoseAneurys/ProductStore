@@ -1,7 +1,5 @@
 //Navbar; create buttons for navigation to respective pages
 let homepageClick = document.getElementById('homepage-click');
-let findNavClick = document.getElementById('find-click');
-let createNavClick = document.getElementById('create-click');
 let deleteNavClick = document.getElementById('delete-click');
 
 //create action when clicking to go back to homepage
@@ -10,22 +8,10 @@ homepageClick.addEventListener('click', () => {
     window.location.href = "../"
 });
 
-//create action when clicking to find a snack
-findNavClick.addEventListener('click', () => {
-    // when clicked, navigate to specific food
-    window.location.href = "./snack"
-});
-
-//create action when clicking to submit a new snack that takes user to create.html
-createNavClick.addEventListener('click', async () => {
-    //when clicked, navigate to create page
-    window.location.href = "./create"
-});
-
 //create action when clicking to remove a snack that takes user to edit.html
 deleteNavClick.addEventListener('click', async () => {
     //when clicked, navigate to create page
-    window.location.href = "./edit"
+    window.location.href = "../edit"
 });
 
 let createButton = document.getElementById('create-button');
@@ -35,13 +21,15 @@ createButton.addEventListener('click', async () => {
     let typeString = document.getElementById('type-input').value;
     let snackPrice = +document.getElementById('price-input').value;
     let snackPicture = document.getElementById('img-input').value;
+    let snackQuantity = document.getElementById('quantity-input').value;
     // packing all our data in an object
     // same as 
     // nameString: nameString
     const snack = {
         typeString,
         snackPrice,
-        snackPicture
+        snackPicture,
+        snackQuantity,
     };
 
 

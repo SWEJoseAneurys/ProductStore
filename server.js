@@ -40,40 +40,48 @@ app.get('/get_specific_snack/:_id', async (req,res) => {
 //Create a new snack in database
 app.post('/create', async (req,res) => {
     console.log("Creating snack");
-    const {typeString: snack, snackPrice: price, snackPicture: image} = req.body
+    const {typeString: snack, snackPrice: price, snackPicture: image, snackQuantity: quantity} = req.body
     console.log(req.body);
     //create snack to submit to database
     let response = await MySnack.create({
         snack,
         price,
-        image
+        image,
+        quantity,
     });
     //reflect submission on front end
     res.send(response);
 });
 
 //Update/modify existing product in database
-app.put('/edit', async (req,res) => {
+app.put('/edit/', async (req,res) => {
     let snack = req.query.id
     console.log("Updating product");
 
     console.log(req.body);
 
-    let response = await MySnack.findByIdAndUpdate(snack, {snack: req.body.newSnackName}, {price: req.body.newSnackPrice}, {image: req.body.newSnackImage}, {new: true});
+    let response = await MySnack.findByIdAndUpdate(snack, {snack: req.body.newSnackName}, {price: req.body.newSnackPrice}, {image: req.body.newSnackImage}, {quantity: req.body.newQuantity});
     console.log("response from collection", response);
     res.json(response);
 
 });
 
-//Delete a product from database
-app.delete('/delete_product', async (req,res) => {
-    console.log("Deleting product");
+app.put("/buy_snack/:_id", async (req,res) => {
+    let snack = req.params._id;
+    let newQuantity = snack.quantity -= 1;
+    let purchaseSnack = await MySnack.findByIdAndUpdate(snack, {quantity: req.body.newQuantity});
 
-    let response = await MySnack.findByIdAndDelete(req.body.id);
+    console.log(purchaseSnack);
+    res.send("Purchased!")
+});
 
-   console.log(response);
+app.delete("/delete_snack/:_id", async (req,res) => {
+    let id = req.params._id;
+    let deletedItem = await MySnack.findByIdAndDelete(id);
 
-   res.send({data: `deleted ${response.$isDeleted} items.`});
+    console.log(deletedItem);
+
+    res.send("deleted")
 });
 
 app.listen(5000, () => {
