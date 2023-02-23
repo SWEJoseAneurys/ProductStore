@@ -27,29 +27,3 @@ h1 {
     background-color: lightcyan;
     padding: 12px;
 }
-
-p {
-    font-family: cursive;
-}
-
-#search-bar{
-  padding: 6px;
-  border: none;
-  margin-top: 8px;
-  margin-right: 16px;
-  font-size: 17px;
-}
-
-button {
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    max-width: 200px;
-}
-
-#inventory {
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    max-width: 200px;
-}

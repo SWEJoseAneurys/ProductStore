@@ -1,19 +1,10 @@
-console.log("js file connected");
+//create buttons to go back to home page
+let homepageClick = document.getElementById('homepage-click');
 
-//Navbar; create buttons for navigation to respective pages
-let createNavClick = document.getElementById('create-click');
-let updateNavClick = document.getElementById('update-click');
-
-//create action when clicking to submit a new snack that takes user to create.html
-createNavClick.addEventListener('click', () => {
-    //when clicked, navigate to create page
-    window.location.href = "./create"
-});
-
-//create action when clicking to remove a snack that takes user to edit.html
-updateNavClick.addEventListener('click', () => {
-    //when clicked, navigate to create page
-    window.location.href = "./edit/choose"
+//create action when clicking to go back to homepage
+homepageClick.addEventListener('click', () => {
+    // when clicked, navigate to homepage
+    window.location.href = "../../"
 });
 
 //make fetch request for all items
@@ -32,10 +23,10 @@ const getAndDisplayData = async () => {
         </a>
         `
 
-        //go to specific snack page once image is clicked
+        //go to specific snack editing page once image is clicked
         itemContainer.addEventListener("click", () => {
             console.log("click", item._id);
-            window.location.href=`./snack/?id=${item._id}`
+            window.location.href=`../../edit/editSnack/?id=${item._id}`
         })
         parentContainer.appendChild(itemContainer);
 

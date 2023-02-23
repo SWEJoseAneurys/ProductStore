@@ -16,7 +16,7 @@ mongoose.connection.once('open', ()=> {
     console.log('connected to mongo');
 });
 
-//Display all products in database
+//HOMEPAGE - Display all products in database
 app.get('/get_snacks', async (req, res) => {
     //get snacks from MongoDB
     let response = await MySnack.find({});
@@ -25,7 +25,7 @@ app.get('/get_snacks', async (req, res) => {
     res.json(response);
 });
 
-//Display specific product in database on click
+//SNACK PAGE - Display specific product in database on click
 app.get('/get_specific_snack/:_id', async (req,res) => {
     //usually done from front end with req.body.whateverTheNameofIdasListedinGetRoute (also req.body.params.nameOfIdAsListedInGetRoute)
     // & get specific snack from MongoDB
@@ -37,7 +37,32 @@ app.get('/get_specific_snack/:_id', async (req,res) => {
     res.json(response)
 });
 
-//Create a new snack in database
+//SNACK PAGE/SEARCHBAR - search for snack from single snack page
+app.get('/get_snack_by_name/:snackName', async (req, res) => {
+    let response = await MySnack.find({snack: req.params.snackName})
+    res.json(response)
+})
+
+//EDIT PAGE/CHOOSE - Display snack for choosing to edit (for edit page)
+app.get('/edit/choose/', async (req, res) => {
+    //get snacks from MongoDB
+    let response = await MySnack.find({});
+    console.log("Displaying snacks");
+    //display snacks in inventory to visitor
+    res.json(response);
+});
+
+//EDIT PAGE/ EDIT SNACK - Make changes to snack already in database
+app.put('/edit/editSnack/:id', async (req,res) => {
+    console.log("Updating product");
+    console.log(req.body);
+    let response = await MySnack.findByIdAndUpdate(req.params.id, req.body, {new: true});
+    // console.log("response from collection", response);
+    // res.json(response);
+    res.send("hola")
+});
+
+//CREATE PAGE - Submit new snack
 app.post('/create', async (req,res) => {
     console.log("Creating snack");
     const {typeString: snack, snackPrice: price, snackPicture: image, snackQuantity: quantity} = req.body
@@ -53,35 +78,24 @@ app.post('/create', async (req,res) => {
     res.send(response);
 });
 
-//Update/modify existing product in database
-app.put('/edit/', async (req,res) => {
-    let snack = req.query.id
-    console.log("Updating product");
+//ROUTES TO ACTIONS ON VARIOUS PAGES
 
-    console.log(req.body);
-
-    let response = await MySnack.findByIdAndUpdate(snack, {snack: req.body.newSnackName}, {price: req.body.newSnackPrice}, {image: req.body.newSnackImage}, {quantity: req.body.newQuantity});
-    console.log("response from collection", response);
+//route to purchase snack
+app.put('/buy_snack/:id', async (req,res) => {
+    console.log(req.params.id);
+    console.log(req.body.buyOne)
+    let response = await MySnack.findByIdAndUpdate(req.params.id, {quantity: req.body.buyOne}, {new: true});
     res.json(response);
-
 });
 
-app.put("/buy_snack/:_id", async (req,res) => {
-    let snack = req.params._id;
-    let newQuantity = snack.quantity -= 1;
-    let purchaseSnack = await MySnack.findByIdAndUpdate(snack, {quantity: req.body.newQuantity});
+//route to delete snack from store
+app.delete('/delete_snack/:id', async (req,res) => {
+    let id = req.params.id;
+    let response = await MySnack.findOneAndDelete(id);
 
-    console.log(purchaseSnack);
-    res.send("Purchased!")
-});
+    console.log(response);
 
-app.delete("/delete_snack/:_id", async (req,res) => {
-    let id = req.params._id;
-    let deletedItem = await MySnack.findByIdAndDelete(id);
-
-    console.log(deletedItem);
-
-    res.send("deleted")
+    res.send(response);
 });
 
 app.listen(5000, () => {
