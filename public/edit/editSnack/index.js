@@ -1,5 +1,5 @@
 //Navbar; create buttons for navigation to respective pages
-let homepageClick = document.getElementById('homepage-click');
+let homeNavClick = document.getElementById('home-click');
 let createNavClick = document.getElementById('create-click');
 
 //get the id of snack from the URL
@@ -9,7 +9,7 @@ const params = new Proxy(new URLSearchParams(window.location.search), {
 let id = params.id;
 
 //create action when clicking to go back to homepage
-homepageClick.addEventListener('click', () => {
+homeNavClick.addEventListener('click', () => {
     // when clicked, navigate to homepage
     window.location.href = "../../"
 });

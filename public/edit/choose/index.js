@@ -1,8 +1,8 @@
 //create buttons to go back to home page
-let homepageClick = document.getElementById('homepage-click');
+let homeNavClick = document.getElementById('home-click');
 
 //create action when clicking to go back to homepage
-homepageClick.addEventListener('click', () => {
+homeNavClick.addEventListener('click', () => {
     // when clicked, navigate to homepage
     window.location.href = "../../"
 });

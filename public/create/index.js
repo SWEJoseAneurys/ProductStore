@@ -1,9 +1,9 @@
 //Navbar; create buttons for navigation to respective pages
-let homepageClick = document.getElementById('homepage-click');
+let homeNavClick = document.getElementById('home-click');
 let updateNavClick = document.getElementById('update-click');
 
 //create action when clicking to go back to homepage from navbar
-homepageClick.addEventListener('click', () => {
+homeNavClick.addEventListener('click', () => {
     // when clicked, navigate to homepage
     window.location.href = "../"
 });
