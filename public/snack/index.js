@@ -112,19 +112,6 @@ buyButton.addEventListener('click', async () => {
     location.reload()
 });
 
-// //create action to go to edit snack currently displayed
-// editSnackClick.addEventListener('click', async () => {
-//     console.log("editing snack");
-//     let response = await fetch(`http://localhost:5000/edit/editSnack/${id}`, {
-//         method: "PUT",
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//         // to send JSON data over HTTP
-//         body: JSON.stringify({buyOne})
-//     })
-// })
-
 //create action when deleting
 deleteButton.addEventListener('click', async () => {
     console.log("deleting");
@@ -139,13 +126,13 @@ deleteButton.addEventListener('click', async () => {
             let tID = setTimeout(function () {
                 window.location.href = "../../";
                 window.clearTimeout(tID);		// clear time out.
-            }, 5000);
+            }, 2000);
         //else remain on create page
         } else {
             let tID = setTimeout(function () {
                 window.location.href = "./get_specific_snack/:_id";
                 window.clearTimeout(tID);		// clear time out.
-            }, 5000);
+            }, 2000);
         };
     };
     redirect_Page();

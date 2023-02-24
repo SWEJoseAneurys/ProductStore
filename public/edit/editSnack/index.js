@@ -93,15 +93,15 @@ updateButton.addEventListener('click', async () => {
     let redirect_Page = () => {
         if (response.status === 200) {
             let tID = setTimeout(function () {
-                window.location.href = `../../snack/${id}`;
+                window.location.href = `http://localhost:5000/snack/?id=${id}`;
                 window.clearTimeout(tID);		// clear time out.
-            }, 5000);
+            }, 2000);
         //else remain on create page
         } else {
             let tID = setTimeout(function () {
                 window.location.href = `../../edit/editSnack/${id}`;
                 window.clearTimeout(tID);		// clear time out.
-            }, 5000);
+            }, 2000);
         };
     };
     redirect_Page();
