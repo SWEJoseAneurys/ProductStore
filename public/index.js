@@ -1,5 +1,3 @@
-console.log("js file connected");
-
 //Navbar; create buttons for navigation to respective pages
 let createNavClick = document.getElementById('create-click');
 let updateNavClick = document.getElementById('update-click');
